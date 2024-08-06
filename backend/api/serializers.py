@@ -1,4 +1,4 @@
-# api/serializers.py
+
 from .models import Utilisateur
 from .models import TypeDeCapteur
 from rest_framework import serializers

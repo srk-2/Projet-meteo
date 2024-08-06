@@ -13,14 +13,14 @@ class Utilisateur(AbstractUser):
 
     groups = models.ManyToManyField(
         Group,
-        related_name='utilisateurs',  # Changez le nom pour éviter les conflits
+        related_name='utilisateurs',  
         blank=True,
         help_text='The groups this user belongs to.',
         related_query_name='utilisateur',
     )
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='utilisateurs',  # Changez le nom pour éviter les conflits
+        related_name='utilisateurs', 
         blank=True,
         help_text='Specific permissions for this user.',
         related_query_name='utilisateur',
