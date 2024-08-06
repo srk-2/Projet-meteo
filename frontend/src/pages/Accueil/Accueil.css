@@ -1,0 +1,56 @@
+.acc {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  
+}
+
+
+
+.container {
+  background-color: #36c5b7;
+  padding: 20px;
+  border-radius: 15px;
+  width: 350px; 
+  height: 400px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cloud-image {
+  width: 200px; 
+  height: 150px;
+  margin-bottom: 50px;
+
+}
+
+.app-title {
+  color: white;
+  font-size: 26px;
+  text-align: center;
+  margin: 0 0 20px 0;
+  margin-bottom: 40px;
+}
+
+.get-started-button {
+  background-color: #fff;
+  color: #28a7c3;
+  border: none;
+  font-size: 20px;
+  padding: 15px 60px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+  background-color: #05c2f7f0;
+}
