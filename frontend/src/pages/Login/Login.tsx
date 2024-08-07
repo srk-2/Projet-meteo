@@ -4,8 +4,6 @@ import axios from 'axios';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants';
 import './Login.css';
 
- 
-
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,13 +13,28 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
+      
       const response = await axios.post('http://127.0.0.1:8000/api/token/', {
         username,
         password,
       });
-      localStorage.setItem(ACCESS_TOKEN, response.data.access);
+
+      const accessToken = response.data.access;
+      localStorage.setItem(ACCESS_TOKEN, accessToken);
       localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
-      navigate('/home'); 
+
+      const userResponse = await axios.get('http://127.0.0.1:8000/api/user/', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const user = userResponse.data;
+      if (user.is_admin) {
+        navigate('/dashboard'); 
+      } else {
+        navigate('/home'); 
+      }
     } catch (err) {
       setError('Invalid username or password');
     }
@@ -66,7 +79,7 @@ const Login: React.FC = () => {
             </small>
             <br />
             <small>
-              Don't have an account? <a href="/register">Sign up</a>
+             Don't have an account? <a href="/register">Sign up</a>
             </small>
             <br />
           </div>
