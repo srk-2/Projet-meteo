@@ -44,7 +44,8 @@ const Login: React.FC = () => {
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
       <div className="card text-center shadow custom-card">
         <div className="card-body">
-          <h5 className="card-title">Login</h5>
+          <h5 className="card-title">Welcome back</h5>
+          <h5 className="detail">Please enter your details to continue</h5>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">

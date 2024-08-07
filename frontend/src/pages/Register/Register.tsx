@@ -142,7 +142,7 @@ const Register: React.FC = () => {
           </form>
           <div className="mt-3">
             <small>
-              Already have an account? <a href="/login">Log in</a>
+              <center>Already have an account? <a href="/login">Login</a> </center>
             </small>
           </div>
         </div>
