@@ -16,7 +16,8 @@ body {
     border-radius: 15px;
     padding: 2rem;
     max-width: 100%;
-    width: 320px;
+    width: 500px;
+    
 }
 
 .card-title {
@@ -43,15 +44,16 @@ body {
     font-size: 1rem;
     padding: 0.75rem 3.5rem;
     border-radius: 10px;
-    margin-left: 70px;
     box-sizing: border-box;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-left:50px;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
     border-color: #0056b3;
+   
 }
 
 small a {

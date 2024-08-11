@@ -36,7 +36,7 @@ const Login: React.FC = () => {
         navigate('/home'); 
       }
     } catch (err) {
-      setError('Invalid username or password');
+      setError('Nom d\'utilisateur ou mot de passe incorrect');
     }
   };
 
@@ -44,8 +44,8 @@ const Login: React.FC = () => {
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
       <div className="card text-center shadow custom-card">
         <div className="card-body">
-          <h5 className="card-title">Welcome back</h5>
-          <h5 className="detail">Please enter your details to continue</h5>
+          <h4 className="card-title">Connexion</h4>
+          <h4 className="detail">Entrez votre nom d'utilisateur et votre mot de passe</h4>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -53,7 +53,7 @@ const Login: React.FC = () => {
                 type="username"
                 className="form-control"
                 id="username"
-                placeholder="Enter your username"
+                placeholder="Nom d'utilisateur"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -64,23 +64,22 @@ const Login: React.FC = () => {
                 type="password"
                 className="form-control"
                 id="password"
-                placeholder="Enter your password"
+                placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
+            <small>
+              <a href="/forgot-password">Mot de passe oublié?</a>
+            </small>
             <button type="submit" className="btn btn-primary btn-block">
-              Login
+              Se connecter
             </button>
           </form>
           <div className="mt-3">
-            <small>
-              <a href="/forgot-password">Forgot password?</a>
-            </small>
-            <br />
-            <small>
-             Don't have an account? <a href="/register">Sign up</a>
+            <small className="pdc">
+             Pas encore de compte? <a href="/register">Créer un compte</a>
             </small>
             <br />
           </div>

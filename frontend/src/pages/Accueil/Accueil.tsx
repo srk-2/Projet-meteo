@@ -15,9 +15,9 @@ const Accueil: React.FC = () => {
     <div className="acc" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="container">
         <img src={cloudImage} alt="Cloud Icon" className="cloud-image" />
-        <h1 className="app-title">FEAB WEATHER<br />APPLICATION</h1>
+        <h1 className="app-title">APPLICATION METEO <br />DE FEAB</h1>
         <button className="get-started-button" onClick={handleGetStartedClick}>
-          Get Started
+          Appuyez pour continuer
         </button>
       </div>
     </div>

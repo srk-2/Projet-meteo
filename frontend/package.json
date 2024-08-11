@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/jwt-decode": "^2.2.1",
@@ -26,6 +27,7 @@
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.26.0",
     "react-toastify": "^10.0.5",
+    "recharts": "^2.12.7",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {

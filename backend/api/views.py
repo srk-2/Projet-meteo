@@ -228,9 +228,6 @@ class AlerteListView(generics.ListAPIView):
         user = self.request.user
         return Alerte.objects.filter(utilisateur=user)
     
-   
-
-    
 
 class AlerteDetailView(generics.RetrieveAPIView):
     queryset = Alerte.objects.all()

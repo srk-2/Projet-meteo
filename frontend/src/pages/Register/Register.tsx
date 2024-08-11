@@ -55,7 +55,7 @@ const Register: React.FC = () => {
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
       <div className="card text-center shadow custom-card">
         <div className="card-body">
-          <h5 className="card-title">Sign up</h5>
+          <h5 className="card-title">Inscription</h5>
           {error && <div className="alert alert-danger">{error}</div>}
           {success && <div className="alert alert-success">{success}</div>}
           <form onSubmit={handleSubmit}>
@@ -64,7 +64,7 @@ const Register: React.FC = () => {
                 type="text"
                 className="form-control"
                 id="username"
-                placeholder="Enter your username"
+                placeholder="Nom d'utilisateur"
                 value={formData.username}
                 onChange={handleChange}
                 required
@@ -74,8 +74,8 @@ const Register: React.FC = () => {
               <input
                 type="text"
                 className="form-control"
-                id="first_name"
-                placeholder="Enter your first name"
+                id="last_name"
+                placeholder="Nom"
                 value={formData.first_name}
                 onChange={handleChange}
                 required
@@ -85,8 +85,8 @@ const Register: React.FC = () => {
               <input
                 type="text"
                 className="form-control"
-                id="last_name"
-                placeholder="Enter your last name"
+                id="first_name"
+                placeholder="Prénoms"
                 value={formData.last_name}
                 onChange={handleChange}
                 required
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
                 type="email"
                 className="form-control"
                 id="email"
-                placeholder="Enter your email"
+                placeholder="Adresse Email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -108,7 +108,7 @@ const Register: React.FC = () => {
                 type="tel"
                 className="form-control"
                 id="telephone"
-                placeholder="Enter your telephone"
+                placeholder="Telephone"
                 value={formData.telephone}
                 onChange={handleChange}
                 required
@@ -119,7 +119,7 @@ const Register: React.FC = () => {
                 type="password"
                 className="form-control"
                 id="password"
-                placeholder="Enter your password"
+                placeholder="Mot de passe"
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -130,19 +130,19 @@ const Register: React.FC = () => {
                 type="password"
                 className="form-control"
                 id="confirmPassword"
-                placeholder="Confirm your password"
+                placeholder="Confirmer le mot de passe"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
               />
             </div>
             <button type="submit" className="btn btn-primary btn-block">
-              Sign up
+              S'inscrire
             </button>
           </form>
           <div className="mt-3">
             <small>
-              <center>Already have an account? <a href="/login">Login</a> </center>
+              <center>Vous avez déjà un compte? <a href="/login">Se connecter</a> </center>
             </small>
           </div>
         </div>
