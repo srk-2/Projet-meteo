@@ -7,10 +7,6 @@ from .views import (
     UtilisateurDeleteView,
     UtilisateurUpdateView,
 
-    TypeDeCapteurListCreateView,
-    TypeDeCapteurDetailView,
-    TypeDeCapteurDeleteView,
-    TypeDeCapteurUpdateView,
 
     CapteurListCreateView,
     CapteurDetailView,
@@ -22,25 +18,15 @@ from .views import (
     CapteurDataDeleteView,
     CapteurDataUpdateView,
 
-    AutomateListCreateView,
-    AutomateDetailView,
-    AutomateDeleteView,
-    AutomateUpdateView,
+    ApiMeteoListCreateView,
+    ApiMeteoDetailView,
+    ApiMeteoDeleteView,
+    ApiMeteoUpdateView,
 
-    WeatherDataListCreateView,
-    WeatherDataDetailView,
-    WeatherDataDeleteView,
-    WeatherDataUpdateView,
-
-    MeteoDataListCreateView,
-    MeteoDataDetailView,
-    MeteoDataDeleteView,
-    MeteoDataUpdateView,
-
-    WeatherPredictionListCreateView,
-    WeatherPredictionDetailView,
-    WeatherPredictionDeleteView,
-    WeatherPredictionUpdateView,
+    PredictionListCreateView,
+    PredictionDetailView,
+    PredictionDeleteView,
+    PredictionUpdateView,
 
     AlerteListCreateView,
     AlerteListView,
@@ -59,12 +45,6 @@ urlpatterns = [
     path('utilisateurs/<int:pk>/update/', UtilisateurUpdateView.as_view(), name='utilisateur-update'),
 
     
-    path('type-de-capteurs/', TypeDeCapteurListCreateView.as_view(), name='type-de-capteur-list-create'),
-    path('type-de-capteurs/<int:pk>/', TypeDeCapteurDetailView.as_view(), name='type-de-capteur-detail'),
-    path('type-de-capteurs/<int:pk>/delete/', TypeDeCapteurDeleteView.as_view(), name='type-de-capteur-delete'),
-    path('type-de-capteurs/<int:pk>/update/', TypeDeCapteurUpdateView.as_view(), name='type-de-capteur-update'),
-
-    
     path('capteurs/', CapteurListCreateView.as_view(), name='capteur-list-create'),
     path('capteurs/<int:pk>/', CapteurDetailView.as_view(), name='capteur-detail'),
     path('capteurs/<int:pk>/delete/', CapteurDeleteView.as_view(), name='capteur-delete'),
@@ -77,28 +57,16 @@ urlpatterns = [
     path('capteur-data/<int:pk>/update/', CapteurDataUpdateView.as_view(), name='capteur-data-update'),
 
     
-    path('automates/', AutomateListCreateView.as_view(), name='automate-list-create'),
-    path('automates/<int:pk>/', AutomateDetailView.as_view(), name='automate-detail'),
-    path('automates/<int:pk>/delete/', AutomateDeleteView.as_view(), name='automate-delete'),
-    path('automates/<int:pk>/update/', AutomateUpdateView.as_view(), name='automate-update'),
+    path('apimeteo/', ApiMeteoListCreateView.as_view(), name='apimeteo-list-create'),
+    path('apimeteo/<int:pk>/', ApiMeteoDetailView.as_view(), name='apimeteo-detail'),
+    path('apimeteo/<int:pk>/delete/', ApiMeteoDeleteView.as_view(), name='apimeteo-delete'),
+    path('apimeteo/<int:pk>/update/', ApiMeteoUpdateView.as_view(), name='apimeteo-update'),
 
-    
-    path('weather-data/', WeatherDataListCreateView.as_view(), name='weather-data-list-create'),
-    path('weather-data/<int:pk>/', WeatherDataDetailView.as_view(), name='weather-data-detail'),
-    path('weather-data/<int:pk>/delete/', WeatherDataDeleteView.as_view(), name='weather-data-delete'),
-    path('weather-data/<int:pk>/update/', WeatherDataUpdateView.as_view(), name='weather-data-update'),
 
-    
-    path('meteo-data/', MeteoDataListCreateView.as_view(), name='meteo-data-list-create'),
-    path('meteo-data/<int:pk>/', MeteoDataDetailView.as_view(), name='meteo-data-detail'),
-    path('meteo-data/<int:pk>/delete/', MeteoDataDeleteView.as_view(), name='meteo-data-delete'),
-    path('meteo-data/<int:pk>/update/', MeteoDataUpdateView.as_view(), name='meteo-data-update'),
-
-    
-    path('weather-predictions/', WeatherPredictionListCreateView.as_view(), name='weather-prediction-list-create'),
-    path('weather-predictions/<int:pk>/', WeatherPredictionDetailView.as_view(), name='weather-prediction-detail'),
-    path('weather-predictions/<int:pk>/delete/', WeatherPredictionDeleteView.as_view(), name='weather-prediction-delete'),
-    path('weather-predictions/<int:pk>/update/', WeatherPredictionUpdateView.as_view(), name='weather-prediction-update'),
+    path('predictions/', PredictionListCreateView.as_view(), name='prediction-list-create'),
+    path('predictions/<int:pk>/', PredictionDetailView.as_view(), name='prediction-detail'),
+    path('predictions/<int:pk>/delete/', PredictionDeleteView.as_view(), name='prediction-delete'),
+    path('predictions/<int:pk>/update/', PredictionUpdateView.as_view(), name='prediction-update'),
 
     
     path('alertes/', AlerteListCreateView.as_view(), name='alerte-list-create'),

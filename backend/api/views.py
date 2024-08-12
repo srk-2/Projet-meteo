@@ -3,8 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
-from .models import Utilisateur , TypeDeCapteur, Capteur, CapteurData, Automate, WeatherData, MeteoData, WeatherPrediction, Alerte
-from .serializers import UtilisateurSerializer, TypeDeCapteurSerializer , CapteurSerializer, CapteurDataSerializer, AutomateSerializer, WeatherDataSerializer, MeteoDataSerializer, WeatherPredictionSerializer, AlerteSerializer
+from .models import Utilisateur , Capteur, CapteurData, ApiMeteo, Prediction , Alerte
+from .serializers import UtilisateurSerializer,  CapteurSerializer, CapteurDataSerializer, ApiMeteoSerializer, PredictionSerializer ,  AlerteSerializer
 from django.contrib.auth import get_user_model
 
 
@@ -52,26 +52,6 @@ class UtilisateurUpdateView(generics.UpdateAPIView):
     permission_classes = [AllowAny]
 
 
-class TypeDeCapteurListCreateView(generics.ListCreateAPIView):
-    queryset = TypeDeCapteur.objects.all()
-    serializer_class = TypeDeCapteurSerializer
-    permission_classes = [IsAuthenticated]
-
-class TypeDeCapteurDetailView(generics.RetrieveAPIView):
-    queryset = TypeDeCapteur.objects.all()
-    serializer_class = TypeDeCapteurSerializer
-    permission_classes = [AllowAny]
-
-class TypeDeCapteurDeleteView(generics.DestroyAPIView):
-    queryset = TypeDeCapteur.objects.all()
-    serializer_class = TypeDeCapteurSerializer
-    permission_classes = [AllowAny]
-
-class TypeDeCapteurUpdateView(generics.UpdateAPIView):
-    queryset = TypeDeCapteur.objects.all()
-    serializer_class = TypeDeCapteurSerializer
-    permission_classes = [AllowAny]
-
 
 class CapteurListCreateView(generics.ListCreateAPIView):
     queryset = Capteur.objects.all()
@@ -115,87 +95,45 @@ class CapteurDataUpdateView(generics.UpdateAPIView):
     permission_classes = [AllowAny]
 
 
-class AutomateListCreateView(generics.ListCreateAPIView):
-    queryset = Automate.objects.all()
-    serializer_class = AutomateSerializer
+class ApiMeteoListCreateView(generics.ListCreateAPIView):
+    queryset = ApiMeteo.objects.all()
+    serializer_class = ApiMeteoSerializer
     permission_classes = [AllowAny]
 
-class AutomateDetailView(generics.RetrieveAPIView):
-    queryset = Automate.objects.all()
-    serializer_class = AutomateSerializer
+class ApiMeteoDetailView(generics.RetrieveAPIView):
+    queryset = ApiMeteo.objects.all()
+    serializer_class = ApiMeteoSerializer
     permission_classes = [AllowAny]
 
-class AutomateDeleteView(generics.DestroyAPIView):
-    queryset = Automate.objects.all()
-    serializer_class = AutomateSerializer
+class ApiMeteoDeleteView(generics.DestroyAPIView):
+    queryset = ApiMeteo.objects.all()
+    serializer_class = ApiMeteoSerializer
     permission_classes = [AllowAny]
 
-class AutomateUpdateView(generics.UpdateAPIView):
-    queryset = Automate.objects.all()
-    serializer_class = AutomateSerializer
-    permission_classes = [AllowAny]
-
-
-class WeatherDataListCreateView(generics.ListCreateAPIView):
-    queryset = WeatherData.objects.all()
-    serializer_class = WeatherDataSerializer
-    permission_classes = [AllowAny]
-
-class WeatherDataDetailView(generics.RetrieveAPIView):
-    queryset = WeatherData.objects.all()
-    serializer_class = WeatherDataSerializer
-    permission_classes = [AllowAny]
-
-class WeatherDataDeleteView(generics.DestroyAPIView):
-    queryset = WeatherData.objects.all()
-    serializer_class = WeatherDataSerializer
-    permission_classes = [AllowAny]
-
-class WeatherDataUpdateView(generics.UpdateAPIView):
-    queryset = WeatherData.objects.all()
-    serializer_class = WeatherDataSerializer
+class ApiMeteoUpdateView(generics.UpdateAPIView):
+    queryset = ApiMeteo.objects.all()
+    serializer_class = ApiMeteoSerializer
     permission_classes = [AllowAny]
 
 
-class MeteoDataListCreateView(generics.ListCreateAPIView):
-    queryset = MeteoData.objects.all()
-    serializer_class = MeteoDataSerializer
+class PredictionListCreateView(generics.ListCreateAPIView):
+    queryset = Prediction.objects.all()
+    serializer_class = PredictionSerializer
     permission_classes = [AllowAny]
 
-class MeteoDataDetailView(generics.RetrieveAPIView):
-    queryset = MeteoData.objects.all()
-    serializer_class = MeteoDataSerializer
+class PredictionDetailView(generics.RetrieveAPIView):
+    queryset = Prediction.objects.all()
+    serializer_class = PredictionSerializer
     permission_classes = [AllowAny]
 
-class MeteoDataDeleteView(generics.DestroyAPIView):
-    queryset = MeteoData.objects.all()
-    serializer_class = MeteoDataSerializer
+class PredictionDeleteView(generics.DestroyAPIView):
+    queryset = Prediction.objects.all()
+    serializer_class = PredictionSerializer
     permission_classes = [AllowAny]
 
-class MeteoDataUpdateView(generics.UpdateAPIView):
-    queryset = MeteoData.objects.all()
-    serializer_class = MeteoDataSerializer
-    permission_classes = [AllowAny]
-
-
-class WeatherPredictionListCreateView(generics.ListCreateAPIView):
-    queryset = WeatherPrediction.objects.all()
-    serializer_class = WeatherPredictionSerializer
-    permission_classes = [AllowAny]
-
-class WeatherPredictionDetailView(generics.RetrieveAPIView):
-    queryset = WeatherPrediction.objects.all()
-    serializer_class = WeatherPredictionSerializer
-    permission_classes = [AllowAny]
-
-class WeatherPredictionDeleteView(generics.DestroyAPIView):
-    queryset = WeatherPrediction.objects.all()
-    serializer_class = WeatherPredictionSerializer
-    permission_classes = [AllowAny]
-
-class WeatherPredictionUpdateView(generics.UpdateAPIView):
-    queryset = WeatherPrediction.objects.all()
-    serializer_class = WeatherPredictionSerializer
+class PredictionUpdateView(generics.UpdateAPIView):
+    queryset = Prediction.objects.all()
+    serializer_class = PredictionSerializer
     permission_classes = [AllowAny]
 
 
@@ -214,8 +152,8 @@ class AlerteListCreateView(generics.ListCreateAPIView):
         for utilisateur in utilisateurs:
             alertes.append(Alerte(
                 utilisateur=utilisateur,
-                libellealerte=serializer.validated_data['libellealerte'],
-                descriptionalerte=serializer.validated_data['descriptionalerte']
+                libelle=serializer.validated_data['libelle'],
+                description=serializer.validated_data['description']
             ))
         
         Alerte.objects.bulk_create(alertes)

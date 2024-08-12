@@ -1,4 +1,4 @@
-from .models import Utilisateur , TypeDeCapteur , Capteur, CapteurData, Automate, WeatherData, MeteoData, WeatherPrediction, Alerte
+from .models import Utilisateur, Capteur, CapteurData, ApiMeteo , Prediction , Alerte
 from rest_framework import serializers
 
 
@@ -17,53 +17,32 @@ class UtilisateurSerializer(serializers.ModelSerializer):
         )
         return user
     
-class TypeDeCapteurSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TypeDeCapteur
-        fields = ['id', 'libelle', 'description']
 
 
 class CapteurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Capteur
-        fields = ['id', 'type', 'nomcapteur', 'status']
+        fields = ['id', 'nomcapteur', 'statut', 'type_capteur', 'localisation', 'date_installation']
 
 
 class CapteurDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = CapteurData
-        fields = ['id', 'capteur', 'timestamp', 'air_temperature', 
-                  'relative_humidity', 'precipitation', 'wind', 'solar_radiation',
-                    'soil_temperature', 'soil_moisture', 'dew_point']
+        fields = ['id', 'capteur', 'timestamp', 'type_donnees', 'valeur']
         
 
-class AutomateSerializer(serializers.ModelSerializer):
+
+class ApiMeteoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Automate
-        fields = ['id', 'nomautomate', 'description', 'installation_date', 'is_active']
+        model = ApiMeteo
+        fields = ['id', 'source', 'timestamp', 'relative_humidity', 'air_temperature', 'solar_radiation', 
+                  'precipitation', 'wind_speed', 'wind_direction', 'soil_temperature', 'soil_humidity']
+        
 
-
-class WeatherDataSerializer(serializers.ModelSerializer):
+class PredictionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WeatherData
-        fields = ['id', 'automate', 'timestamp', 'air_temperature',
-                   'relative_humidity', 'precipitation', 'wind', 'solar_radiation', 
-                   'soil_temperature', 'soil_moisture', 'dew_point']
-
-
-class MeteoDataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MeteoData
-        fields = ['id', 'timestamp', 'air_temperature', 'relative_humidity',
-                   'precipitation', 'wind', 'solar_radiation', 'soil_temperature', 
-                   'soil_moisture', 'dew_point']
-
-
-class WeatherPredictionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = WeatherPrediction
-        fields = ['id', 'weather_data', 'meteo_data', 'timestamp', 
-                  'predicted_values', 'model_used', 'created_at']
+        model = Prediction
+        fields = ['id', 'timestamp', 'location', 'predicted_values', 'model_used']
 
 
 class AlerteSerializer(serializers.ModelSerializer):
@@ -71,4 +50,4 @@ class AlerteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alerte
-        fields = ['utilisateur', 'libellealerte', 'descriptionalerte', 'created_at', 'is_read']
+        fields = ['utilisateur', 'libelle', 'description', 'created_at', 'is_read']
