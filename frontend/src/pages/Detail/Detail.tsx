@@ -1,57 +1,44 @@
-
+import React from 'react';
 import './Detail.css';
 
-function Detail() {
+const Detail: React.FC = () => {
+  const currentDate = new Date();
+  const dateString = currentDate.toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  
+  const details = [
+    { label: 'Température de l\'air', value: '23°C' },
+    { label: 'Humidité relative', value: '60%' },
+    { label: 'Vitesse du vent', value: '15 km/h' },
+    { label: 'Direction du vent', value: 'Nord' },
+    { label: 'Précipitations', value: '2 mm' },
+    { label: 'Rayonnement solaire', value: '500 W/m²' },
+    { label: 'Température du sol', value: '22°C' },
+    { label: 'Humidité du sol', value: '45%' },
+  ];
+
   return (
-    <div className="weather-container"> 
-      <div className="weather-main">
-        <div className="weather-details">
-        <h5>FEAB</h5>
-        <p>Dimanche</p>
-          <div className="detail">
-            <p>Humidité relative</p>
-            <p>50%</p>
+    <div className="details-card">
+      <div className="details-header">
+        <h1>FEAB,Dalave</h1>
+        <p>{dateString}</p>
+        <p>Partiellemnt ensoleillé</p>
+      </div>
+      <div className="details-grid">
+        {details.map((item, index) => (
+          <div className="details-card-item" key={index}>
+            <div>{item.label}</div>
+            <div>{item.value}</div>
           </div>
-          <div className="detail">
-            <p>Température de l'air</p>
-            <p>30°</p>
-          </div>
-          <div className="detail">
-            <p>Précipitations</p>
-            <p>80%</p>
-          </div>
-          <div className="detail">
-            <p>Vent</p>
-            <p>22km/h</p>
-          </div>
-          <div className="detail">
-            <p>Point de rosée</p>
-            <p>7°</p>
-          </div>
-          <div className="detail">
-            <p>Température du sol</p>
-            <p>33°</p>
-          </div>
-          <div className="detail">
-            <p>Humidité du sol</p>
-            <p>45%</p>
-          </div>
-          <div className="detail">
-            <p>UV Index</p>
-            <p>5</p>
-          </div>
-          <div className="detail">
-            <p>Lever du soleil</p>
-            <p>5:22</p>
-          </div>
-          <div className="detail">
-            <p>Coucher du soleil</p>
-            <p>18:11</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default Detail
+export default Detail;

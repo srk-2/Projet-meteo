@@ -35,7 +35,8 @@ body {
     width: 100%; 
     max-width: 500px; 
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
 }
 
 .btn-primary {

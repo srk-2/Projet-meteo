@@ -1,0 +1,103 @@
+.weather-widget {
+    background: linear-gradient(to bottom, #6cb3f3, #a6e0ff);
+    border-radius: 20px;
+    color: rgb(36, 36, 32);
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 12px rgba(77, 16, 16, 0.15);
+    width: 1000px;
+  }
+  
+  .weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .weather-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+  }
+  
+  .weather-header h1 {
+    font-size: 54px;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .weather-header p {
+    font-size: 28px;
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .weather-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .weather-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgb(54, 97, 206);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .weather-button:hover {
+    background-color: rgba(218, 236, 236, 0.5);
+  }
+  
+  .weather-body .hourly-forecast {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .weather-body .hourly-card {
+    background: rgba(255, 255, 255, 0.723);
+    color: #000;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .weather-body .hourly-card i {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .weather-body .sun-details, .weather-body .additional-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(36, 5, 5, 0.3);
+    padding-top: 15px;
+  }
+  
+  .weather-body .sun-details div, .weather-body .additional-info div {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .weather-body i {
+    color: #fcd706;
+    font-size: 40px;
+    margin-right: 10px;
+  }
+  
