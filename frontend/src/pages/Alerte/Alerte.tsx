@@ -5,8 +5,8 @@ import './Alerte.css';
 
 interface WeatherAlert {
   id: number;
-  libellealerte: string;
-  descriptionalerte: string;
+  libelle: string;
+  description: string;
   created_at: string;
   is_read: boolean;
 }
@@ -63,8 +63,8 @@ const Alerte: React.FC = () => {
             onTouchEnd={handleNotificationTouchEnd}
           >
             <div className="notification-content">
-              <strong>{alert.libellealerte}</strong>
-              <p>{alert.descriptionalerte}</p>
+              <strong>{alert.libelle}</strong>
+              <p>{alert.description}</p>
             </div>
             {activeAlert !== alert.id && <div className="notification-indicator" />}
           </div>

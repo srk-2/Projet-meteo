@@ -10,7 +10,6 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Home from './pages/Home/Home';
-
 import Dashboard from './pages/Dashboard/Dashboard';
 
 
@@ -30,7 +29,6 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Accueil />} />
         <Route path="/home" element={<Home />} />
-       
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/previsions" element={<Previsions />} />
         <Route path="/detail" element={<Detail />} />

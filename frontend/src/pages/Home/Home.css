@@ -63,7 +63,7 @@
   }
   
   .weather-body .hourly-card {
-    background: rgba(255, 255, 255, 0.723);
+    background: rgb(149, 224, 250);
     color: #000;
     border-radius: 5px;
     padding: 10px;
@@ -96,7 +96,7 @@
   }
   
   .weather-body i {
-    color: #fcd706;
+    color: #ffffff;
     font-size: 40px;
     margin-right: 10px;
   }
