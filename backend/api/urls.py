@@ -35,6 +35,8 @@ from .views import (
     AlerteUpdateView
 )
 
+
+
 urlpatterns = [
 
     path('user/', UserDetailView.as_view(), name='user-detail'),

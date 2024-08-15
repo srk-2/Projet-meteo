@@ -1,15 +1,21 @@
-
 from django.contrib.auth.models import BaseUserManager
 
 class UtilisateurManager(BaseUserManager):
-    def create_user(self, username, email, password=None, telephone=None, **extra_fields):
+    def create_user(self, username, email, password=None, telephone=None, first_name=None, last_name=None, **extra_fields):
         """
         Create and return a regular user with an email, password, and optional telephone number.
         """
         if not email:
             raise ValueError('The user must have an email address.')
         email = self.normalize_email(email)
-        utilisateur = self.model(username=username, email=email, telephone=telephone, **extra_fields)
+        utilisateur = self.model(
+            username=username, 
+            email=email, 
+            telephone=telephone, 
+            first_name=first_name,
+            last_name=last_name,    
+            **extra_fields
+        )
         utilisateur.set_password(password)
         utilisateur.save(using=self._db)
         return utilisateur

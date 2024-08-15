@@ -57,13 +57,13 @@ const Previsions: React.FC = () => {
       if (weatherDescription.includes('soleil')) return <i className="bi bi-cloud-sun" style={{ fontSize: '2rem' }}></i>;
       if (weatherDescription.includes('pluie')) return <i className="bi bi-cloud-rain" style={{ fontSize: '2rem' }}></i>;
       if (weatherDescription.includes('bruine')) return <i className="bi bi-cloud-drizzle" style={{ fontSize: '2rem' }}></i>;
-      if (weatherDescription.includes('nuage')) return <i className="bi bi-cloud-fill" style={{ fontSize: '2rem' }}></i>;
-      return <i className="bi bi-cloud-fill" style={{ fontSize: '2rem' }}></i>; 
+      if (weatherDescription.includes('nuage')) return <i className="bi bi-clouds" style={{ fontSize: '2rem' }}></i>;
+      return <i className="bi bi-cloud" style={{ fontSize: '2rem' }}></i>;
     }
 
     const temp = dailyTemperatures[index - 1];
-    if (temp < 15) return <i className="bi bi-cloud-rain-fill" style={{ fontSize: '2rem' }}></i>;
-    if (temp < 25) return <i className="bi bi-cloud-fill" style={{ fontSize: '2rem' }}></i>;
+    if (temp < 15) return <i className="bi bi-cloud-rain" style={{ fontSize: '2rem' }}></i>;
+    if (temp < 25) return <i className="bi bi-cloud" style={{ fontSize: '2rem' }}></i>;
     return <i className="bi bi-cloud-sun" style={{ fontSize: '2rem' }}></i>;
   };
 
@@ -94,7 +94,6 @@ const Previsions: React.FC = () => {
         })}
       </div>
 
-      
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}

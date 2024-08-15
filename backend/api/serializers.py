@@ -1,4 +1,4 @@
-from .models import Utilisateur, Capteur, CapteurData, ApiMeteo , Prediction , Alerte
+from .models import Utilisateur, Capteur, CapteurData, ApiMeteo , Prediction, Alerte
 from rest_framework import serializers
 
 
@@ -13,11 +13,12 @@ class UtilisateurSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password'],
+            first_name=validated_data.get('first_name'), 
+            last_name=validated_data.get('last_name'),
             telephone=validated_data.get('telephone')
         )
         return user
     
-
 
 class CapteurSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,7 +31,6 @@ class CapteurDataSerializer(serializers.ModelSerializer):
         model = CapteurData
         fields = ['id', 'capteur', 'timestamp', 'type_donnees', 'valeur']
         
-
 
 class ApiMeteoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,4 +50,4 @@ class AlerteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alerte
-        fields = ['utilisateur', 'libelle', 'description', 'created_at', 'is_read']
+        fields = ['id','utilisateur', 'libelle', 'description', 'created_at', 'is_read']

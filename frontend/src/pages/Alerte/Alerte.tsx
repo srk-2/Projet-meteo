@@ -31,7 +31,8 @@ const Alerte: React.FC = () => {
 
         const response = await axios.get('http://127.0.0.1:8000/api/alertes/user/', config);
 
-        setAlerts(response.data);
+        const unreadAlerts = response.data.filter((alert: WeatherAlert) => !alert.is_read);
+        setAlerts(unreadAlerts);
       } catch (error) {
         console.error('Error fetching alerts:', error);
       }
@@ -55,20 +56,24 @@ const Alerte: React.FC = () => {
         <h1>Notifications</h1>
       </div>
       <div className="notifications">
-        {alerts.map(alert => (
-          <div
-            key={alert.id}
-            className={`notification ${activeAlert === alert.id ? 'active' : ''}`}
-            onClick={() => handleNotificationClick(alert.id)}
-            onTouchEnd={handleNotificationTouchEnd}
-          >
-            <div className="notification-content">
-              <strong>{alert.libelle}</strong>
-              <p>{alert.description}</p>
+        {alerts.length > 0 ? (
+          alerts.map(alert => (
+            <div
+              key={alert.id}
+              className={`notification ${activeAlert === alert.id ? 'active' : ''}`}
+              onClick={() => handleNotificationClick(alert.id)}
+              onTouchEnd={handleNotificationTouchEnd}
+            >
+              <div className="notification-content">
+                <strong>{alert.libelle}</strong>
+                <p>{alert.description}</p>
+              </div>
+              {activeAlert !== alert.id && <div className="notification-indicator" />}
             </div>
-            {activeAlert !== alert.id && <div className="notification-indicator" />}
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Pas de nouvelles alertes</p>
+        )}
       </div>
     </div>
   );

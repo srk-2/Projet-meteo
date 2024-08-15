@@ -76,7 +76,7 @@ const Register: React.FC = () => {
                 className="form-control"
                 id="last_name"
                 placeholder="Nom"
-                value={formData.first_name}
+                value={formData.last_name}
                 onChange={handleChange}
                 required
               />
@@ -87,7 +87,7 @@ const Register: React.FC = () => {
                 className="form-control"
                 id="first_name"
                 placeholder="Prénoms"
-                value={formData.last_name}
+                value={formData.first_name}
                 onChange={handleChange}
                 required
               />

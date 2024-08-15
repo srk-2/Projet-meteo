@@ -13,7 +13,7 @@ class CreateUtilisateurView(generics.CreateAPIView):
     serializer_class = UtilisateurSerializer
     permission_classes = [AllowAny]
     
-
+    
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -50,6 +50,7 @@ class UtilisateurUpdateView(generics.UpdateAPIView):
     queryset = Utilisateur.objects.all()
     serializer_class = UtilisateurSerializer
     permission_classes = [AllowAny]
+    
 
 
 
@@ -160,7 +161,7 @@ class AlerteListCreateView(generics.ListCreateAPIView):
 
 class AlerteListView(generics.ListAPIView):
     serializer_class = AlerteSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         user = self.request.user

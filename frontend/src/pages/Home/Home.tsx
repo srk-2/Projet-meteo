@@ -60,11 +60,11 @@ const Home: React.FC = () => {
   }, []);
 
   const getIconClassForWeather = (description: string): string => {
-    if (description.includes('drizzle')) return 'bi bi-cloud-drizzle-fill';
-    if (description.includes('rain')) return 'bi bi-cloud-rain-fill';
-    if (description.includes('sun')) return 'bi bi-cloud-sun-fill';
+    if (description.includes('légère pluie')) return 'bi bi-cloud-drizzle-fill';
+    if (description.includes('pluie ')) return 'bi bi-cloud-rain-fill';
+    if (description.includes('soleil')) return 'bi bi-cloud-sun-fill';
     if (description.includes('moon')) return 'bi bi-cloud-moon-fill';
-    if (description.includes('clouds')) return 'bi bi-clouds-fill';
+    if (description.includes('nuage')) return 'bi bi-clouds-fill';
     return 'bi bi-cloud-fill'; 
   };
 
@@ -108,6 +108,9 @@ const Home: React.FC = () => {
           <p>Aujourd'hui</p>
           <p>{weatherData ? `${Math.round(weatherData.main.temp)}°C` : 'Chargement...'}</p>
           <p>{weatherData ? weatherData.weather[0].description : 'Chargement...'}</p>
+        </div>
+        <div className="notification-bell">
+          <i className="bi bi-bell-fill" onClick={() => navigate('/alerte')}></i>
         </div>
         <div className="weather-buttons">
           <button
