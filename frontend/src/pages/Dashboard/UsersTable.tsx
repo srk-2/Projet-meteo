@@ -142,6 +142,7 @@ const UsersTable = () => {
 
     return (
         <div>
+            <h1>Gestion des utilisateurs</h1>
             <button onClick={handleAddUser}>Ajouter un utilisateur</button>
             <table className="users-table">
                 <thead>
