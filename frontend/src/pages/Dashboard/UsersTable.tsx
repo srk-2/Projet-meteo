@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './UsersTable.css';
 
 interface User {
     id: number;
@@ -11,7 +12,7 @@ interface User {
     is_admin: boolean;
 }
 
-const UsersTable = () => {
+const UsersTable: React.FC = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -26,7 +27,8 @@ const UsersTable = () => {
         password: '',
         confirm_password: ''
     });
-    const [error, setError] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
 
     useEffect(() => {
         fetchUsers();
@@ -43,6 +45,18 @@ const UsersTable = () => {
         }
     };
 
+    const validateName = (name: string) => {
+        return /^[A-Za-zÀ-ÿ '-]+$/.test(name);  
+    };
+
+    const validateTelephone = (telephone: string) => {
+        return /^\d{8,15}$/.test(telephone); 
+    };
+
+    const validateEmail = (email: string) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.endsWith('@gmail.com'); 
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -53,8 +67,24 @@ const UsersTable = () => {
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!editingUser && formData.password !== formData.confirm_password) {
-            setError('Les mots de passe ne correspondent pas');
+
+        if (!validateName(formData.first_name) || !validateName(formData.last_name)) {
+            setError("Les noms et prénoms ne doivent pas contenir de chiffres ou de caractères spéciaux.");
+            return;
+        }
+
+        if (!validateTelephone(formData.telephone)) {
+            setError("Le numéro de téléphone doit être au format: '+999999999'. Jusqu'à 15 chiffres autorisés.");
+            return;
+        }
+
+        if (!validateEmail(formData.email)) {
+            setError("L'adresse email doit se terminer par '@gmail.com'.");
+            return;
+        }
+
+        if (formData.password !== formData.confirm_password) {
+            setError("Les mots de passe ne correspondent pas.");
             return;
         }
 
@@ -88,11 +118,15 @@ const UsersTable = () => {
                 password: '',
                 confirm_password: ''
             });
-            setError('');
+            setError(null);
+            setSuccess('Utilisateur enregistré avec succès !');
         } catch (error) {
             console.error('Error submitting form:', error);
-            if (axios.isAxiosError(error) && error.response) {
-                setError(`Erreur lors de l'enregistrement : ${error.response.data.detail || 'Veuillez réessayer.'}`);
+            if (axios.isAxiosError(error)) {
+               
+                console.error('Error response status:', error.response?.status);
+                console.error('Error response data:', error.response?.data);
+                setError(`Erreur lors de l'enregistrement : ${error.response?.data?.detail || 'Veuillez réessayer.'}`);
             } else {
                 setError('Une erreur est survenue lors de l\'enregistrement. Veuillez réessayer.');
             }
@@ -180,6 +214,8 @@ const UsersTable = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <h2>{editingUser ? 'Modifier utilisateur' : 'Ajouter un utilisateur'}</h2>
+                        {error && <div className="alert alert-danger">{error}</div>}
+                        {success && <div className="alert alert-success">{success}</div>}
                         <form onSubmit={handleFormSubmit}>
                             <div>
                                 <label>
@@ -233,7 +269,7 @@ const UsersTable = () => {
                                 <label>
                                     Téléphone:
                                     <input
-                                        type="text"
+                                        type="tel"
                                         name="telephone"
                                         value={formData.telephone}
                                         onChange={handleInputChange}
@@ -253,22 +289,24 @@ const UsersTable = () => {
                                     </select>
                                 </label>
                             </div>
-                            <div>
-                                <label>
-                                    Mot de passe:
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-                                </label>
-                            </div>
                             {!editingUser && (
                                 <div>
                                     <label>
-                                        Confirmer Mot de passe:
+                                        Mot de passe:
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            value={formData.password}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                    </label>
+                                </div>
+                            )}
+                            {!editingUser && (
+                                <div>
+                                    <label>
+                                        Confirmer le mot de passe:
                                         <input
                                             type="password"
                                             name="confirm_password"
@@ -279,7 +317,6 @@ const UsersTable = () => {
                                     </label>
                                 </div>
                             )}
-                            {error && <p style={{ color: 'red' }}>{error}</p>}
                             <div>
                                 <button type="submit">Enregistrer</button>
                                 <button type="button" onClick={() => setShowModal(false)}>Annuler</button>

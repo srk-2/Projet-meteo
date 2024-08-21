@@ -17,6 +17,18 @@ const Register: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
+  const validateName = (name: string) => {
+    return /^[A-Za-zÀ-ÿ '-]+$/.test(name);  
+  };
+
+  const validateTelephone = (telephone: string) => {
+    return /^[0-9]{8}$/.test(telephone);  
+  };
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); 
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({
@@ -28,8 +40,23 @@ const Register: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
+    if (!validateName(formData.first_name) || !validateName(formData.last_name)) {
+      setError("Les noms et prénoms ne doivent pas contenir de chiffres ou de caractères spéciaux.");
+      return;
+    }
+
+    if (!validateTelephone(formData.telephone)) {
+      setError("Le numéro de téléphone doit contenir 8 chiffres.");
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setError("L'adresse email n'est pas valide.");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
-      setError("Les mots de passe ne correspondent pas");
+      setError("Les mots de passe ne correspondent pas.");
       return;
     }
 

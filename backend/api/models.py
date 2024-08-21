@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 from .managers import UtilisateurManager
@@ -5,7 +7,15 @@ from django.conf import settings
 from django.utils import timezone
 
 class Utilisateur(AbstractUser):
-    telephone = models.CharField(max_length=15, null=True, blank=True)
+    telephone = models.CharField(
+        max_length=15, 
+        null=True, 
+        blank=True, 
+        validators=[RegexValidator(
+            regex=r'^\+?1?\d{8,15}$',
+            message="Le numéro de téléphone doit être au format: '+999999999'. Jusqu'à 15 chiffres autorisés."
+        )]
+    )
     is_admin = models.BooleanField(default=False)
 
     objects = UtilisateurManager()
@@ -25,6 +35,14 @@ class Utilisateur(AbstractUser):
         blank=True,
         related_query_name='utilisateur',
     )
+
+    def clean(self):
+        if not self.first_name.isalpha():
+            raise ValidationError('Le prénom ne doit contenir que des lettres.')
+        if not self.last_name.isalpha():
+            raise ValidationError('Le nom ne doit contenir que des lettres.')
+        if not self.email.endswith('@gmail.com'):
+            raise ValidationError("L'email doit être au format quelquechose@gmail.com")
 
 class Capteur(models.Model):
     STATUS_CHOICES = [

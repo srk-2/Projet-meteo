@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { WeatherData } from './types';
+import axios from 'axios';
+import { ACCESS_TOKEN } from '../../constants';
 
-interface HourlyData {
-  time: string;
-  temperature: string;
-  iconClass: string;
+interface WeatherAlert {
+  id: number;
+  libelle: string;
+  description: string;
+  created_at: string;
+  is_read: boolean;
 }
 
 const Home: React.FC = () => {
@@ -18,6 +22,9 @@ const Home: React.FC = () => {
   const [soilTemperature, setSoilTemperature] = useState<number | null>(null);
   const [soilMoisture, setSoilMoisture] = useState<number | null>(null);
   const [windDirection, setWindDirection] = useState<number | null>(null);
+  const [alerts, setAlerts] = useState<WeatherAlert[]>([]);
+  const [activeAlert, setActiveAlert] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const currentHour = new Date().getHours();
@@ -55,8 +62,30 @@ const Home: React.FC = () => {
       }
     };
 
+    const fetchWeatherAlerts = async () => {
+      try {
+        const accessToken = localStorage.getItem(ACCESS_TOKEN);
+        if (!accessToken) {
+          console.error('Access token not found');
+          return;
+        }
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+
+        const response = await axios.get('http://127.0.0.1:8000/api/alertes/user/', config);
+        const unreadAlerts = response.data.filter((alert: WeatherAlert) => !alert.is_read);
+        setAlerts(unreadAlerts);
+      } catch (error) {
+        console.error('Error fetching alerts:', error);
+      }
+    };
+
     fetchWeatherData();
     fetchOpenMeteoData();
+    fetchWeatherAlerts();
   }, []);
 
   const getIconClassForWeather = (description: string): string => {
@@ -80,11 +109,10 @@ const Home: React.FC = () => {
     return 'bi bi-cloud-sun-fill'; 
   };
 
-  const hoursData: HourlyData[] = Array.from({ length: 24 }, (_, i) => {
+  const hoursData = Array.from({ length: 24 }, (_, i) => {
     const hour = (currentHour + i) % 24;
     const time = hour === currentHour ? 'Maintenant' : `${hour < 10 ? '0' : ''}${hour}:00`;
 
-    
     const temperature = i === 0 
       ? `${Math.round(weatherData?.main.temp || 0)}°C` 
       : `${Math.round(hourlyTemps[(currentHour + i) % 24])}°C`;
@@ -100,6 +128,14 @@ const Home: React.FC = () => {
     };
   });
 
+  const handleNotificationClick = (id: number) => {
+    setActiveAlert(id);
+  };
+
+  const handleNotificationTouchEnd = () => {
+    setActiveAlert(null);
+  };
+
   return (
     <div className="weather-widget">
       <div className="weather-header">
@@ -110,7 +146,7 @@ const Home: React.FC = () => {
           <p>{weatherData ? weatherData.weather[0].description : 'Chargement...'}</p>
         </div>
         <div className="notification-bell">
-          <i className="bi bi-bell-fill" onClick={() => navigate('/alerte')}></i>
+          <i className="bi bi-bell-fill" onClick={() => setIsModalOpen(true)}></i>
         </div>
         <div className="weather-buttons">
           <button
@@ -121,6 +157,41 @@ const Home: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setIsModalOpen(false)}>×</button>
+            <div className="notifications-container">
+              <div className="header">
+                <span className="bell-icon">🔔</span>
+                <h1>Notifications</h1>
+              </div>
+              <div className="notifications">
+                {alerts.length > 0 ? (
+                  alerts.map(alert => (
+                    <div
+                      key={alert.id}
+                      className={`notification ${activeAlert === alert.id ? 'active' : ''}`}
+                      onClick={() => handleNotificationClick(alert.id)}
+                      onTouchEnd={handleNotificationTouchEnd}
+                    >
+                      <div className="notification-content">
+                        <strong>{alert.libelle}</strong>
+                        <p>{alert.description}</p>
+                      </div>
+                      {activeAlert !== alert.id && <div className="notification-indicator" />}
+                    </div>
+                  ))
+                ) : (
+                  <p>Pas de nouvelles alertes</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="weather-body">
         <div className="hourly-forecast">
           {hoursData.map((slot, index) => (
@@ -144,7 +215,7 @@ const Home: React.FC = () => {
           <div>Rayonnement solaire: {uvIndex !== null ? uvIndex : 'Chargement...'}</div>
         </div>
         <div className="additional-info">
-          <div>Température du sol: {soilTemperature !== null ? `${soilTemperature}°C` : 'Chargement...'}</div>
+          <div>Température du sol: {soilTemperature !== null ? `${Math.round(soilTemperature)}°C` : 'Chargement...'}</div>
           <div>Humidité du sol: {soilMoisture !== null ? `${soilMoisture} m³/m³` : 'Chargement...'}</div>
         </div>
       </div>

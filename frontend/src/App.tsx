@@ -2,7 +2,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Accueil from './pages/Accueil/Accueil';
-import Alerte from './pages/Alerte/Alerte';
 import NotFound from './pages/NotFound/NotFound';
 import Previsions from './pages/Previsions/Previsions';
 import Register from './pages/Register/Register';
@@ -31,7 +30,6 @@ const App: React.FC = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/previsions" element={<Previsions />} />
-        <Route path="/alerte" element={<Alerte />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ResetPassword />} />
         <Route path="/logout" element={<Logout />} />

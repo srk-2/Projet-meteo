@@ -2,7 +2,31 @@ from .models import Utilisateur, Capteur, CapteurData, ApiMeteo , Prediction, Al
 from rest_framework import serializers
 
 
+from rest_framework import serializers
+from .models import Utilisateur
+
 class UtilisateurSerializer(serializers.ModelSerializer):
+
+    def validate_first_name(self, value):
+        if not value.isalpha():
+            raise serializers.ValidationError("Le prénom ne doit contenir que des lettres.")
+        return value
+
+    def validate_last_name(self, value):
+        if not value.isalpha():
+            raise serializers.ValidationError("Le nom ne doit contenir que des lettres.")
+        return value
+
+    def validate_email(self, value):
+        if not value.endswith('@gmail.com'):
+            raise serializers.ValidationError("L'email doit être au format quelquechose@gmail.com.")
+        return value
+
+    def validate_telephone(self, value):
+        if not value.isdigit():
+            raise serializers.ValidationError("Le téléphone ne doit contenir que des chiffres.")
+        return value
+
     class Meta:
         model = Utilisateur
         fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'telephone', 'is_admin']
@@ -18,6 +42,7 @@ class UtilisateurSerializer(serializers.ModelSerializer):
             telephone=validated_data.get('telephone')
         )
         return user
+
     
 
 class CapteurSerializer(serializers.ModelSerializer):
