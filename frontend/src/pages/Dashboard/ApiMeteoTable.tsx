@@ -80,7 +80,7 @@ const ApiMeteoTable = () => {
     return (
         <div>
             <h1>Table des Données Météorologiques</h1>
-            <button onClick={() => setShowModal(true)}>Ajouter Donnée Météo</button>
+            <button className="ajout" onClick={() => setShowModal(true)}>Ajouter Donnée Météo</button>
             <table>
                 <thead>
                     <tr>
@@ -113,8 +113,8 @@ const ApiMeteoTable = () => {
                             <td>{apiMeteo.soil_temperature}</td>
                             <td>{apiMeteo.soil_humidity}</td>
                             <td>
-                                <button onClick={() => openModalForUpdate(apiMeteo)}>Modifier</button>
-                                <button onClick={() => handleDeleteApiMeteo(apiMeteo.id)}>Supprimer</button>
+                                <button className="modif"onClick={() => openModalForUpdate(apiMeteo)}>Modifier</button>
+                                <button className="sup" onClick={() => handleDeleteApiMeteo(apiMeteo.id)}>Supprimer</button>
                             </td>
                         </tr>
                     ))}

@@ -1,9 +1,6 @@
 from .models import Utilisateur, Capteur, CapteurData, ApiMeteo , Prediction, Alerte
 from rest_framework import serializers
-
-
-from rest_framework import serializers
-from .models import Utilisateur
+from django.contrib.auth.hashers import make_password
 
 class UtilisateurSerializer(serializers.ModelSerializer):
 
@@ -42,7 +39,11 @@ class UtilisateurSerializer(serializers.ModelSerializer):
             telephone=validated_data.get('telephone')
         )
         return user
-
+    
+    def update(self, instance, validated_data):
+        if 'password' in validated_data:
+            validated_data['password'] = make_password(validated_data['password'])
+        return super().update(instance, validated_data)
     
 
 class CapteurSerializer(serializers.ModelSerializer):

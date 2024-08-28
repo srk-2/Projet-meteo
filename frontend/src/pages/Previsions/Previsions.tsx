@@ -70,7 +70,7 @@ const Previsions: React.FC = () => {
   return (
     <div className="weather-container">
       <div className="title">
-        <h1><i className="bi bi-calendar3"></i> Prévisions sur 7 jours</h1>
+        <h2><i className="bi bi-calendar3"></i> Prévisions sur 7 jours</h2>
       </div>
       <div className="forecast-grid">
         {days.map((day, index) => {

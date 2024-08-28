@@ -77,7 +77,7 @@ const CapteurTable = () => {
     return (
         <div>
             <h1>Table des Capteurs</h1>
-            <button onClick={() => setShowModal(true)}>Ajouter Capteur</button>
+            <button className="ajout" onClick={() => setShowModal(true)}>Ajouter Capteur</button>
             <table>
                 <thead>
                     <tr>
@@ -100,8 +100,8 @@ const CapteurTable = () => {
                             <td>{capteur.localisation}</td>
                             <td>{capteur.date_installation}</td> 
                             <td>
-                                <button onClick={() => openModalForUpdate(capteur)}>Modifier</button>
-                                <button onClick={() => handleDeleteCapteur(capteur.id)}>Supprimer</button>
+                                <button className="modif" onClick={() => openModalForUpdate(capteur)}>Modifier</button>
+                                <button className="sup" onClick={() => handleDeleteCapteur(capteur.id)}>Supprimer</button>
                             </td>
                         </tr>
                     ))}

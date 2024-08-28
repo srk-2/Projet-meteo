@@ -59,6 +59,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'django_rest_passwordreset',
+    'django_celery_beat',
+     'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +110,14 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'scfeab@gmail.com'
+EMAIL_HOST_PASSWORD = 'Wendy@2024'
+DEFAULT_FROM_EMAIL = 'scfeab@gmail.com'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -153,3 +164,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+import os
+from celery import Celery
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+
+celery_app = Celery('backend')
+celery_app.config_from_object('django.conf:settings', namespace='CELERY')
+celery_app.autodiscover_tasks()
+
+CRONJOBS = [
+    ('0 2 * * *', 'api.cron.send_daily_alert'),  # Lancer la tâche tous les jours à 2h du matin
+]

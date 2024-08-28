@@ -1,0 +1,71 @@
+.users-table-container {
+    max-height: 400px; 
+    overflow-y: auto;  
+    margin: 20px 0;    
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}
+.ajout {
+    background-color: rgb(44, 160, 243);
+    color: white;
+    border-color: rgb(49, 211, 244);
+    font-size: larger;
+    
+}
+.modif{
+    background-color:rgb(55, 158, 14);
+    color: white;
+    border-color: yellowgreen;
+   
+}
+.sup{
+    background-color:red;
+    color: white;
+    border-color: red;
+    
+}
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.users-table th {
+    background-color: #f2f2f2;
+}
+
+.users-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.users-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.users-table td button {
+    margin-right: 5px; 
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(215, 232, 242);
+    padding: 20px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 300px;
+    height: auto;
+}
+
+.modal-content {
+    position: relative;
+}

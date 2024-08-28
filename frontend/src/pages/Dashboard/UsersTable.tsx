@@ -123,9 +123,6 @@ const UsersTable: React.FC = () => {
         } catch (error) {
             console.error('Error submitting form:', error);
             if (axios.isAxiosError(error)) {
-               
-                console.error('Error response status:', error.response?.status);
-                console.error('Error response data:', error.response?.data);
                 setError(`Erreur lors de l'enregistrement : ${error.response?.data?.detail || 'Veuillez réessayer.'}`);
             } else {
                 setError('Une erreur est survenue lors de l\'enregistrement. Veuillez réessayer.');
@@ -174,10 +171,12 @@ const UsersTable: React.FC = () => {
 
     if (loading) return <p>Chargement...</p>;
 
+
     return (
         <div>
             <h1>Gestion des utilisateurs</h1>
-            <button onClick={handleAddUser}>Ajouter un utilisateur</button>
+            <button className="ajout" onClick={handleAddUser}>Ajouter un utilisateur</button>
+            <div className="users-table-container">
             <table className="users-table">
                 <thead>
                     <tr>
@@ -202,17 +201,17 @@ const UsersTable: React.FC = () => {
                             <td>{user.telephone || 'N/A'}</td>
                             <td>{user.is_admin ? 'Admin' : 'Utilisateur'}</td>
                             <td>
-                                <button onClick={() => handleEditUser(user)}>Modifier</button>
-                                <button onClick={() => handleDeleteUser(user.id)}>Supprimer</button>
+                                <button className="modif" onClick={() => handleEditUser(user)}>Modifier</button>
+                                <button className="sup" onClick={() => handleDeleteUser(user.id)}>Supprimer</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            </div>
 
             {showModal && (
                 <div className="modal">
-                    <div className="modal-content">
                         <h2>{editingUser ? 'Modifier utilisateur' : 'Ajouter un utilisateur'}</h2>
                         {error && <div className="alert alert-danger">{error}</div>}
                         {success && <div className="alert alert-success">{success}</div>}
@@ -283,46 +282,40 @@ const UsersTable: React.FC = () => {
                                         name="is_admin"
                                         value={formData.is_admin}
                                         onChange={handleInputChange}
+                                        required
                                     >
                                         <option value="user">Utilisateur</option>
                                         <option value="admin">Admin</option>
                                     </select>
                                 </label>
                             </div>
-                            {!editingUser && (
-                                <div>
-                                    <label>
-                                        Mot de passe:
-                                        <input
-                                            type="password"
-                                            name="password"
-                                            value={formData.password}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </label>
-                                </div>
-                            )}
-                            {!editingUser && (
-                                <div>
-                                    <label>
-                                        Confirmer le mot de passe:
-                                        <input
-                                            type="password"
-                                            name="confirm_password"
-                                            value={formData.confirm_password}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </label>
-                                </div>
-                            )}
                             <div>
-                                <button type="submit">Enregistrer</button>
-                                <button type="button" onClick={() => setShowModal(false)}>Annuler</button>
+                                <label>
+                                    Mot de passe:
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleInputChange}
+                                        required={!editingUser} 
+                                    />
+                                </label>
                             </div>
+                            <div>
+                                <label>
+                                    Confirmer le mot de passe:
+                                    <input
+                                        type="password"
+                                        name="confirm_password"
+                                        value={formData.confirm_password}
+                                        onChange={handleInputChange}
+                                        required={!editingUser} 
+                                    />
+                                </label>
+                            </div>
+                            <button type="submit">{editingUser ? 'Mettre à jour' : 'Ajouter'}</button>
+                            <button type="button" onClick={() => setShowModal(false)}>Annuler</button>
                         </form>
-                    </div>
                 </div>
             )}
         </div>

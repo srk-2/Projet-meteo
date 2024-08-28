@@ -26,7 +26,6 @@ const AlerteTable = () => {
     const fetchAlertes = async () => {
         try {
             const response = await axios.get<Alerte[]>('http://127.0.0.1:8000/api/alertes/');
-            console.log('Alertes récupérées:', response.data); 
             setAlertes(response.data);
         } catch (error) {
             console.error('Erreur lors de la récupération des alertes:', error);
@@ -61,16 +60,13 @@ const AlerteTable = () => {
 
     const handleDeleteAlerte = async (id: number) => {
         try {
-            console.log('Suppression de l\'alerte avec ID:', id); 
-            const response = await axios.delete(`http://127.0.0.1:8000/api/alertes/${id}/delete/`);
-            console.log('Réponse de suppression:', response); 
+            await axios.delete(`http://127.0.0.1:8000/api/alertes/${id}/delete/`);
             fetchAlertes(); 
         } catch (error) {
             console.error('Erreur lors de la suppression de l\'alerte:', error);
         }
     };
     
-
     const openModalForUpdate = (alerte: Alerte) => {
         setLibelle(alerte.libelle);
         setDescription(alerte.description);
@@ -82,40 +78,42 @@ const AlerteTable = () => {
     return (
         <div>
             <h1>Table des Alertes</h1>
-            <button onClick={() => { setIsUpdating(false); setShowModal(true); }}>Ajouter Alerte</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Libellé</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                        <th>Lu</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {alertes.length > 0 ? (
-                        alertes.map(alerte => (
-                            <tr key={alerte.id}>
-                                <td>{alerte.id}</td>
-                                <td>{alerte.libelle}</td>
-                                <td>{alerte.description}</td>
-                                <td>{new Date(alerte.created_at).toLocaleString()}</td>
-                                <td>{alerte.is_read ? 'Oui' : 'Non'}</td>
-                                <td>
-                                    <button onClick={() => openModalForUpdate(alerte)}>Modifier</button>
-                                    <button onClick={() => handleDeleteAlerte(alerte.id)}>Supprimer</button>
-                                </td>
-                            </tr>
-                        ))
-                    ) : (
+            <button className="ajout" onClick={() => { setIsUpdating(false); setShowModal(true); }}>Ajouter Alerte</button>
+            <div className="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td colSpan={6}>Aucune alerte à afficher</td>
+                            <th>ID</th>
+                            <th>Libellé</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                           
+                            <th>Actions</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {alertes.length > 0 ? (
+                            alertes.map(alerte => (
+                                <tr key={alerte.id}>
+                                    <td>{alerte.id}</td>
+                                    <td>{alerte.libelle}</td>
+                                    <td>{alerte.description}</td>
+                                    <td>{new Date(alerte.created_at).toLocaleString()}</td>
+                                    
+                                    <td>
+                                        <button className="modif" onClick={() => openModalForUpdate(alerte)}>Modifier</button>
+                                        <button className="sup" onClick={() => handleDeleteAlerte(alerte.id)}>Supprimer</button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan={6}>Aucune alerte à afficher</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             {showModal && (
                 <div className="modal">

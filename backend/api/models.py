@@ -17,6 +17,7 @@ class Utilisateur(AbstractUser):
         )]
     )
     is_admin = models.BooleanField(default=False)
+   
 
     objects = UtilisateurManager()
 

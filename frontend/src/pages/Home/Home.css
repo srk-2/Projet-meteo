@@ -131,33 +131,70 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7); /* Augmentation de l'opacité pour un meilleur contraste */
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal-content {
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
+    z-index: 1000; /* S'assurer que la modale est au-dessus de tout le reste */
+}
+
+.modal-content {
+    background: #f1f5f9; /* Couleur légèrement plus claire pour un contraste doux */
+    border-radius: 15px; /* Courbes plus douces pour correspondre au style global */
+    padding: 25px; /* Un peu plus d'espace pour un contenu aéré */
     position: relative;
-    max-width: 80%;
-    max-height: 80%;
-    overflow: auto;
-  }
-  
-  .modal-close {
+    max-width: 500px; /* Réduction de la largeur maximale pour une meilleure lisibilité */
+    width: 100%; /* S'adapte à la largeur de l'écran */
+    max-height: 90%; /* Augmentation de la hauteur maximale */
+    overflow-y: auto; /* Ajout du défilement vertical */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus marquée pour un effet de profondeur */
+    color: #363636; /* Texte légèrement plus foncé pour une meilleure lisibilité */
+}
+
+.modal-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
     background: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 28px; /* Taille un peu plus grande pour une meilleure accessibilité */
     cursor: pointer;
-  }
-  
-  .modal-close:hover {
-    color: #007bff;
-  }
-  
+    color: #555; /* Couleur plus douce pour le bouton de fermeture */
+    transition: color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+.modal-close:hover {
+    color: #ff5a5a; /* Changement de couleur au survol pour une interaction claire */
+}
+
+.modal-header {
+    font-size: 24px; /* Taille de police confortable pour le titre */
+    margin-bottom: 20px; /* Espacement en dessous du titre pour une meilleure séparation */
+    font-weight: bold; /* Titre en gras pour le mettre en valeur */
+    text-align: center; /* Centrer le titre pour un meilleur équilibre visuel */
+}
+
+.modal-body {
+    font-size: 16px; /* Taille de police standard pour le corps du texte */
+    line-height: 1.6; /* Espacement des lignes pour une meilleure lisibilité */
+}
+
+.modal-footer {
+    margin-top: 20px; /* Espacement au-dessus du pied de page pour séparer du contenu */
+    text-align: right; /* Alignement à droite pour les boutons d'action */
+}
+
+.modal-footer button {
+    background-color: #75989f; /* Couleur de fond des boutons en accord avec l'ensemble */
+    color: white; /* Couleur du texte sur les boutons */
+    border: none;
+    border-radius: 5px; /* Bordures douces pour les boutons */
+    padding: 10px 15px; /* Espacement interne des boutons pour un meilleur confort d'utilisation */
+    cursor: pointer;
+    font-size: 14px; /* Taille de police pour les boutons */
+    transition: background-color 0.3s; /* Transition douce pour l'effet de survol */
+}
+
+.modal-footer button:hover {
+    background-color: #57707b; /* Couleur au survol pour indiquer l'interaction */
+}

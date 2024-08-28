@@ -79,6 +79,7 @@ const UsersTable = () => {
                 ))}
             </tbody>
         </table>
+    
     );
 };
 

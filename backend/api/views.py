@@ -52,8 +52,6 @@ class UtilisateurUpdateView(generics.UpdateAPIView):
     permission_classes = [AllowAny]
     
 
-
-
 class CapteurListCreateView(generics.ListCreateAPIView):
     queryset = Capteur.objects.all()
     serializer_class = CapteurSerializer
@@ -136,7 +134,6 @@ class PredictionUpdateView(generics.UpdateAPIView):
     queryset = Prediction.objects.all()
     serializer_class = PredictionSerializer
     permission_classes = [AllowAny]
-
 
 
 User = get_user_model()
