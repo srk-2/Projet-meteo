@@ -3,6 +3,7 @@ from django.urls import path , include
 from api.views import CreateUtilisateurView , UtilisateurDetailView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/utilisateur/register/", CreateUtilisateurView.as_view(), name="register"),
