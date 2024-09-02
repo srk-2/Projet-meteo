@@ -43,13 +43,13 @@ développée en React TypeScript, avec un backend en Python/Django et une base d
 6. Appliquez les migrations : python manage.py migrate
 7.Lancez le serveur Django : python manage.py runserver
 
-###Base de Données
+### Base de Données
 Créez la base de données MySQL nécessaire avec le script SQL fourni ou en configurant la base de données dans MySQL.
 Assurez-vous que la base de données est configurée correctement dans le fichier settings.py du backend.
 Utilisation
 Accédez à l'application via http://localhost:5173 pour l'interface utilisateur.
 Accédez à l'API backend via http://localhost:8000.
 
-###Contact
+### Contact
 Pour toute question ou assistance, veuillez me contacter à wendychardey@gmail.com
 
