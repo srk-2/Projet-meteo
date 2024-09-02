@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 import './Dashboard.css';
-
+import backgroundImage from './feab.jpg';
 import DashboardContent from './DashboardContent';
 import CapteurTable from './CapteurTable';
 import AlerteTable from './AlerteTable';
@@ -31,11 +31,13 @@ const Dashboard = () => {
     };
 
     return (
+        <div className="acc" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="dashboard">
             <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
             <div className="content">
                 {renderContent()}
             </div>
+        </div>
         </div>
     );
 }
