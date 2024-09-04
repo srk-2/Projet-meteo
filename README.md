@@ -41,7 +41,7 @@ développée en React TypeScript, avec un backend en Python/Django et une base d
        }
    }
 6. Appliquez les migrations : python manage.py migrate
-7.Lancez le serveur Django : python manage.py runserver
+7. Lancez le serveur Django : python manage.py runserver
 
 ### Base de Données
 Créez la base de données MySQL nécessaire avec le script SQL fourni ou en configurant la base de données dans MySQL.

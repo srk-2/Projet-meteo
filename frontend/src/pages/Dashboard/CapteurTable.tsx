@@ -78,6 +78,7 @@ const CapteurTable = () => {
         <div>
             <h1>Table des Capteurs</h1>
             <button className="ajout" onClick={() => setShowModal(true)}>Ajouter Capteur</button>
+            <div className="table-container">
             <table>
                 <thead>
                     <tr>
@@ -107,6 +108,7 @@ const CapteurTable = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
 
             {showModal && (
                 <div className="modal">

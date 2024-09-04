@@ -8,6 +8,7 @@
     justify-content: space-between;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .description {
@@ -16,27 +17,34 @@
     color: #bdbdbd;
     text-align: center;
     margin: 0;
-    margin-bottom: 30px;;
+    margin-bottom: 30px;
+    font-weight: bold; 
 }
 
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
-    padding: 15px 0;
+    padding: 15px 20px; 
     cursor: pointer;
     color: #bdbdbd;
-    transition: color 0.3s;
+    transition: background-color 0.3s, color 0.3s; 
+    border-radius: 8px;
 }
 
 .sidebar ul li.active {
     color: #fff;
     background-color: #2E4053;
-    border-radius: 8px;
 }
 
 .sidebar ul li:hover {
     color: #fff;
+    background-color: #34495E; 
+}
+
+.icon-spacing {
+    margin-right: 0.5rem; 
 }

@@ -7,8 +7,8 @@ import CapteurTable from './CapteurTable';
 import AlerteTable from './AlerteTable';
 import ApiMeteoTable from './ApiMeteoTable';
 import UsersTable from './UsersTable';
-
-
+import StatisticsCards from './StatisticsCards';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Dashboard = () => {
     const [activeMenu, setActiveMenu] = useState('Tableau de bord');
@@ -25,6 +25,8 @@ const Dashboard = () => {
                 return <AlerteTable />;
             case 'Fournisseur de services météo':
                 return <ApiMeteoTable />;
+            case 'Statistiques':
+                return <StatisticsCards />;
             default:
                 return <DashboardContent />;
         }
@@ -32,12 +34,12 @@ const Dashboard = () => {
 
     return (
         <div className="acc" style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <div className="dashboard">
-            <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-            <div className="content">
-                {renderContent()}
+            <div className="dashboard">
+                <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+                <div className="content">
+                    {renderContent()}
+                </div>
             </div>
-        </div>
         </div>
     );
 }

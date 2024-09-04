@@ -80,7 +80,7 @@ const ApiMeteoTable = () => {
     return (
         <div>
             <h1>Table des Données Météorologiques</h1>
-            <button className="ajout" onClick={() => setShowModal(true)}>Ajouter Donnée Météo</button>
+            <button className="ajout" onClick={() => setShowModal(true)}>Ajouter Fournisseur Météo</button>
             <table>
                 <thead>
                     <tr>
