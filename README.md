@@ -50,6 +50,4 @@ Utilisation
 Accédez à l'application via http://localhost:5173 pour l'interface utilisateur.
 Accédez à l'API backend via http://localhost:8000.
 
-### Contact
-Pour toute question ou assistance, veuillez me contacter à wendychardey@gmail.com
 
