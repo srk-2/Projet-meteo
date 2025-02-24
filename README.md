@@ -23,10 +23,10 @@ développée en React TypeScript, avec un backend en Python/Django et une base d
 
 ### Backend (Django)
 1. Accédez au répertoire backend : `cd backend`
-2. Créez un environnement virtuel Python : `python -m venv venv`
+2. Créez un environnement virtuel Python : `python -m venv env`
 3. Activez l'environnement virtuel :
-   - Sur Windows : `venv\Scripts\activate`
-   - Sur macOS/Linux : `source venv/bin/activate`
+   - Sur Windows : `env\Scripts\activate`
+   - Sur macOS/Linux : `source env/bin/activate`
 4. Installez les dépendances : `pip install -r requirements.txt`
 5. Configurez la base de données MySQL dans `settings.py` :
    ```python
