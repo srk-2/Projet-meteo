@@ -84,7 +84,7 @@ const ApiMeteoTable = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                       
                         <th>Source</th>
                         <th>Timestamp</th>
                         <th>Humidité Relative</th>
@@ -101,7 +101,7 @@ const ApiMeteoTable = () => {
                 <tbody>
                     {apiMetos.map(apiMeteo => (
                         <tr key={apiMeteo.id}>
-                            <td>{apiMeteo.id}</td>
+                            
                             <td>{apiMeteo.source}</td>
                             <td>{apiMeteo.timestamp}</td>
                             <td>{apiMeteo.relative_humidity}</td>

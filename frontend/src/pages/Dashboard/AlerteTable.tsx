@@ -83,7 +83,7 @@ const AlerteTable = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                           
                             <th>Libellé</th>
                             <th>Description</th>
                             <th>Date</th>
@@ -95,7 +95,7 @@ const AlerteTable = () => {
                         {alertes.length > 0 ? (
                             alertes.map(alerte => (
                                 <tr key={alerte.id}>
-                                    <td>{alerte.id}</td>
+                                   
                                     <td>{alerte.libelle}</td>
                                     <td>{alerte.description}</td>
                                     <td>{new Date(alerte.created_at).toLocaleString()}</td>

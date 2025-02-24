@@ -82,7 +82,7 @@ const CapteurTable = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        
                         <th>Nom Capteur</th>
                         <th>Statut</th>
                         <th>Type</th>
@@ -94,7 +94,7 @@ const CapteurTable = () => {
                 <tbody>
                     {capteurs.map(capteur => (
                         <tr key={capteur.id}>
-                            <td>{capteur.id}</td>
+                            
                             <td>{capteur.nomcapteur}</td>
                             <td>{capteur.statut}</td>
                             <td>{capteur.type_capteur}</td>

@@ -180,7 +180,7 @@ const UsersTable: React.FC = () => {
             <table className="users-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                       
                         <th>Nom d'utilisateur</th>
                         <th>Email</th>
                         <th>Prénom</th>
@@ -193,7 +193,7 @@ const UsersTable: React.FC = () => {
                 <tbody>
                     {users.map(user => (
                         <tr key={user.id}>
-                            <td>{user.id}</td>
+                           
                             <td>{user.username}</td>
                             <td>{user.email}</td>
                             <td>{user.first_name}</td>
